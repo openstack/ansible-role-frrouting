@@ -10,7 +10,7 @@ platforms:
   - name: primary
     groups:
       - frr
-    image: "${DOCKER_REGISTRY:-quay.io/gotmax23}/${DOCKER_IMAGE_TAG:-debian-systemd:bookworm}"
+    image: "${DOCKER_REGISTRY:-quay.io/gotmax23}/${DOCKER_IMAGE_TAG:-debian-systemd:trixie}"
     command: ${DOCKER_COMMAND:-""}
     privileged: true
     pre_build_image: true
@@ -28,7 +28,7 @@ platforms:
   - name: secondary
     groups:
       - frr
-    image: "${DOCKER_REGISTRY:-quay.io/gotmax23}/${DOCKER_IMAGE_TAG:-debian-systemd:bookworm}"
+    image: "${DOCKER_REGISTRY:-quay.io/gotmax23}/${DOCKER_IMAGE_TAG:-debian-systemd:trixie}"
     command: ${DOCKER_COMMAND:-""}
     privileged: true
     pre_build_image: true
@@ -66,9 +66,9 @@ provisioner:
           - ip prefix-list pl-allowed-adv seq 10 deny any
 
   playbooks:
-    prepare: prepare.yml
-    converge: playbook.yml
-    verify: verify.yml
+    prepare: ../../tests/prepare.yml
+    converge: ../../tests/test.yml
+    verify: .../../tests/verify.yml
   config_options:
     defaults:
       inject_facts_as_vars: false
