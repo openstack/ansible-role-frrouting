@@ -1,11 +1,11 @@
 ---
 dependency:
   name: galaxy
-  # options:
-  #   requirements-file: requirements.yml
-  #   role-file: requirements.yml
+  enabled: false
+
 driver:
   name: docker
+
 platforms:
   - name: primary
     groups:
@@ -35,6 +35,7 @@ platforms:
     networks:
       - name: frr
         ipv4_address: 172.18.0.3
+
 provisioner:
   name: ansible
   lint:
@@ -72,5 +73,6 @@ provisioner:
   config_options:
     defaults:
       inject_facts_as_vars: false
+
 scenario:
   name: default
